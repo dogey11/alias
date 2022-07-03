@@ -1,11 +1,15 @@
 package main
 
-import "os"
+import (
+	"os"
+	"path/filepath"
+)
 
 func location() string {
-	ex, err := os.Getwd()
+	ex, err := os.Executable()
 	if err != nil {
 		panic(err)
 	}
-	return ex
+	exPath := filepath.Dir(ex)
+	return exPath
 }

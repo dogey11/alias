@@ -25,6 +25,8 @@ func main() {
 		case "-p", "--path":
 			fmt.Printf("Add this to your system PATH:\n%s\n", location())
 			os.Exit(0)
+		default:
+			os.Exit(1)
 		}
 	case 2:
 		break

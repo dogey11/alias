@@ -12,7 +12,7 @@ func write(filename string, contents string, allow_args bool, bat bool, echo boo
 	}
 
 	if allow_args {
-		contents = contents + " %%*"
+		contents = contents + " %*"
 	}
 
 	if bat {
@@ -21,6 +21,7 @@ func write(filename string, contents string, allow_args bool, bat bool, echo boo
 		filename = fmt.Sprintf("%s.cmd", strings.ReplaceAll(filename, " ", ""))
 	}
 
+	os.Chdir(location())
 	f, err := os.Create(filename)
 	if err != nil {
 		fmt.Println(err)
