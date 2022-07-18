@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-const VERSION = "alias 1.0.0"
+const VERSION = "1.0.0"
 
 func main() {
 	args := os.Args[1:]
@@ -26,7 +26,7 @@ func main() {
 			fmt.Printf("Add this to your system PATH:\n%s\n", location())
 			os.Exit(0)
 		default:
-			os.Exit(1)
+			os.Exit(0)
 		}
 	case 2:
 		break

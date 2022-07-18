@@ -34,3 +34,10 @@ func write(filename string, contents string, allow_args bool, bat bool, echo boo
 		f.Close()
 	}
 }
+
+func delete(filename string) {
+	err := os.Remove(filename)
+	if err != nil {
+		panic(err)
+	}
+}
