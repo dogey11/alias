@@ -32,7 +32,8 @@ func main() {
 			fmt.Printf("Add this to your system PATH:\n%s\n", location())
 			os.Exit(0)
 		default:
-			os.Exit(0)
+			fmt.Printf("Unknown parameter \"%s\"", strings.ToLower(args[0]))
+			os.Exit(1)
 		}
 	case 2:
 		switch strings.ToLower(args[0]) {
@@ -51,5 +52,5 @@ func main() {
 		}
 	}
 
-	write(args[0], args[1], parseArgs("-a"), parseArgs("-e"))
+	write(args[0]+".cmd", args[1], parseArgs("-a"), parseArgs("-e"))
 }
