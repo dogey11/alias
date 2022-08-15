@@ -29,7 +29,7 @@ func write(filename string, contents string, allow_args bool, echo bool) {
 }
 
 func delete(filename string) {
-	err := os.Remove(filename)
+	err := os.Remove(filename + ".cmd")
 	if err != nil {
 		panic(err)
 	}
