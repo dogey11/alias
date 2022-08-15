@@ -6,12 +6,20 @@ import (
 	"strings"
 )
 
-const VERSION = "1.0.0"
+const VERSION = "1.1.0"
+
+func parseArgs(arg string, arg_alt string) bool {
+	for _, s := range os.Args[1:] {
+		if s == arg || s == arg_alt {
+			return true
+		}
+	}
+	return false
+}
 
 func main() {
 	args := os.Args[1:]
 	allow_args := false
-	bat := false
 	echo := false
 
 	switch len(args) {
@@ -29,14 +37,18 @@ func main() {
 			os.Exit(0)
 		}
 	case 2:
-		break
+		switch strings.ToLower(args[0]) {
+		case "-d", "--delete":
+			delete(args[1])
+			os.Exit(0)
+		default:
+			break
+		}
 	default:
 		for i := 2; i < len(args); i++ {
 			switch strings.ToLower(args[i]) {
 			case "-a", "--args":
 				allow_args = true
-			case "-b", "--bat":
-				bat = true
 			case "-e", "--echo":
 				echo = true
 			default:
@@ -46,5 +58,5 @@ func main() {
 		}
 	}
 
-	write(args[0], args[1], allow_args, bat, echo)
+	write(args[0], args[1], parseArgs("-a", ""), echo)
 }
